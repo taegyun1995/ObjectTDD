@@ -1,10 +1,10 @@
 package objectTdd.cafe;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static objectTdd.cafe.CoffeeSize.*;
+import static objectTdd.cafe.CoffeeSize.TALL;
+import static objectTdd.cafe.CoffeeSize.VENTI;
 import static objectTdd.cafe.CoffeeType.AMERICANO;
 import static objectTdd.cafe.CoffeeType.LATTE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,12 +31,12 @@ public class BaristaTdd {
         Barista barista = new Barista();
         Coffee coffee = new Coffee(LATTE, TALL);
 
-        Coffee makeCoffee = barista.makeCoffee(coffee);
-        Coffee serveCoffee = barista.serveCoffee(makeCoffee);
+        Coffee serveCoffee = barista.serveCoffee(coffee);
 
         assertNotNull(serveCoffee);
         assertEquals(LATTE, serveCoffee.getCoffeeType());
-        assertEquals(TALL, serveCoffee.getCoffeeSize());
+        assertEquals(TALL, serveCoffee.getCoffeeSize()
+        );
     }
 
 }

@@ -10,7 +10,7 @@ public class Barista {
     }
 
     public Coffee serveCoffee(Coffee coffee) {
-        return coffee;
+        return makeCoffee(coffee);
     }
 
 }
