@@ -9,4 +9,8 @@ public class Barista {
         return new Coffee(coffee.getCoffeeType(), coffee.getCoffeeSize());
     }
 
+    public Coffee serveCoffee(Coffee coffee) {
+        return coffee;
+    }
+
 }
