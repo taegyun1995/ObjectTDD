@@ -5,17 +5,16 @@ import java.util.List;
 
 public class Kiosk {
 
-    private List<Coffee> orders = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
+
+    public List<Order> getOrders() {
+        return orders;
+    }
 
     public Kiosk() {
     }
 
-    public void order(Coffee coffee) {
-        orders.add(coffee);
+    public void order(Order order) {
+        orders.add(order);
     }
-
-    public List<Coffee> getOrders() {
-        return new ArrayList<>(orders);
-    }
-
 }

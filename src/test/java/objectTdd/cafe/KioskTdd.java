@@ -20,8 +20,8 @@ public class KioskTdd {
         customer.orderCoffee(kiosk, AMERICANO, VENTI);
 
         assertFalse(kiosk.getOrders().isEmpty());
-        assertEquals(AMERICANO, kiosk.getOrders().get(0).getCoffeeType());
-        assertEquals(VENTI, kiosk.getOrders().get(0).getCoffeeSize());
+        assertEquals(AMERICANO, kiosk.getOrders().get(0).getCoffee().getCoffeeType());
+        assertEquals(VENTI, kiosk.getOrders().get(0).getCoffee().getCoffeeSize());
     }
 
 }

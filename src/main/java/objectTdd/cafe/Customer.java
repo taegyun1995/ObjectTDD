@@ -7,7 +7,7 @@ public class Customer {
 
     public void orderCoffee(Kiosk kiosk, CoffeeType coffeeType, CoffeeSize coffeeSize) {
         Coffee coffee = new Coffee(coffeeType, coffeeSize);
-        kiosk.order(coffee);
+        kiosk.order(new Order(coffee));
     }
 
 }
