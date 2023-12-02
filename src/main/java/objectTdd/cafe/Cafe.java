@@ -15,6 +15,9 @@ public class Cafe {
     }
 
     public void welcome(Customer customer) {
+        if (customers.contains(customer)) {
+            throw new IllegalArgumentException("뭐야.. 도플갱어다..");
+        }
         customers.add(customer);
     }
 

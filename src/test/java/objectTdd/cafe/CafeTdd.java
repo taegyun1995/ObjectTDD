@@ -22,6 +22,18 @@ public class CafeTdd {
     }
 
     @Test
+    @DisplayName("아니 뭐야 저 사람 들어와있는데 어떻게 또 들어온거지..?")
+    void testDoppelgangerUser() {
+        Cafe cafe = new Cafe();
+        Customer customer = new Customer();
+
+        cafe.welcome(customer);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            cafe.welcome(customer);
+        });
+    }
+
+    @Test
     @DisplayName("카페 영업 종료 했습니다.. 감사합니다 :)")
     void testUserGetOutCafe() {
         Cafe cafe = new Cafe();
