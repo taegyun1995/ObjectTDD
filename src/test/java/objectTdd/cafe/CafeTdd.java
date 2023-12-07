@@ -1,47 +1,63 @@
 package objectTdd.cafe;
 
-import org.junit.jupiter.api.Assertions;
+import objectTdd.cafeTdd.cafe.Cafe;
+import objectTdd.cafeTdd.customer.Customer;
+import objectTdd.cafeTdd.customer.CustomerRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.*;
 
 public class CafeTdd {
 
     @Test
     @DisplayName("카페에 손님이 들어왔다!!")
     void testUserComeInCafe() {
-        Cafe cafe = new Cafe();
-        Customer customer = new Customer();
+        Customer mockCustomer = mock(Customer.class);
+        List<Customer> customers = new ArrayList<>();
+        customers.add(mockCustomer);
 
-        cafe.welcome(customer);
+        CustomerRepository customerRepository = mock(CustomerRepository.class);
+        when(customerRepository.contains(mockCustomer)).thenReturn(false);
 
-        assertNotNull(cafe);
-        assertEquals(cafe.inUsers(), 1);
+        Cafe cafe = new Cafe(customerRepository);
+        cafe.welcome(customers);
+
+        verify(customerRepository, times(1)).contains(mockCustomer);
+        verify(customerRepository, times(1)).addCustomer(mockCustomer);
     }
 
     @Test
     @DisplayName("아니 뭐야 저 사람 들어와있는데 어떻게 또 들어온거지..?")
     void testDoppelgangerUser() {
-        Cafe cafe = new Cafe();
-        Customer customer = new Customer();
+        Customer mockCustomer = mock(Customer.class);
+        List<Customer> customers = new ArrayList<>();
+        customers.add(mockCustomer);
 
-        cafe.welcome(customer);
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            cafe.welcome(customer);
-        });
+        CustomerRepository customerRepository = mock(CustomerRepository.class);
+        when(customerRepository.contains(mockCustomer)).thenReturn(true);
+
+        Cafe cafe = new Cafe(customerRepository);
+
+        assertThrows(IllegalArgumentException.class, () -> cafe.welcome(customers));
     }
 
     @Test
-    @DisplayName("카페 영업 종료 했습니다.. 감사합니다 :)")
-    void testUserGetOutCafe() {
-        Cafe cafe = new Cafe();
-        Customer customer = new Customer();
+    @DisplayName("영업 종료했습니다:) 감사합니다ㅎㅎ ")
+    void testCloseOfCafe() {
+        List<Customer> customers = new ArrayList<>();
 
-        cafe.getOut(customer);
+        CustomerRepository customerRepository = mock(CustomerRepository.class);
+        Cafe cafe = new Cafe(customerRepository);
 
-        assertEquals(cafe.inUsers(), 0);
+        cafe.welcome(customers);
+
+        verify(customerRepository, never()).contains(any(Customer.class));
+        verify(customerRepository, never()).addCustomer(any(Customer.class));
     }
 
 }
