@@ -1,7 +1,5 @@
 package objectTdd.legacyRefactoring.refactoring;
 
-import objectTdd.legacyRefactoring.legacy.Order;
-
 public class RefactoringService {
 
     private final ILogger logger;
