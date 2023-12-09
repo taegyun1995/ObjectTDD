@@ -1,8 +1,8 @@
 package objectTdd.cafe;
 
-import objectTdd.cafeTdd.cafe.Cafe;
-import objectTdd.cafeTdd.customer.Customer;
-import objectTdd.cafeTdd.customer.CustomerRepository;
+import objectTdd.cafe.cafe.Cafe;
+import objectTdd.cafe.customer.Customer;
+import objectTdd.cafe.customer.CustomerRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
