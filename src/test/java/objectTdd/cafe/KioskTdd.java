@@ -6,6 +6,7 @@ import objectTdd.cafe.order.OrderRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 public class KioskTdd {
@@ -20,6 +21,15 @@ public class KioskTdd {
         kiosk.placeOrder(mockOrder);
 
         verify(mockOrderRepository, times(1)).saveOrder(mockOrder);
+    }
+
+    @Test
+    @DisplayName("주문이 제대로 안들어갔는디오.. :(")
+    void testInvalidOrder() {
+        OrderRepository mockOrderRepository = mock(OrderRepository.class);
+        Kiosk kiosk = new Kiosk(mockOrderRepository);
+
+        assertThrows(IllegalArgumentException.class, () -> kiosk.placeOrder(null));
     }
 
 }
