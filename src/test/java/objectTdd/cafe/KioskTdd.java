@@ -24,12 +24,24 @@ public class KioskTdd {
     }
 
     @Test
-    @DisplayName("주문이 제대로 안들어갔는디오.. :(")
+    @DisplayName("머야 빌지가 비어있잖아??")
     void testInvalidOrder() {
         OrderRepository mockOrderRepository = mock(OrderRepository.class);
         Kiosk kiosk = new Kiosk(mockOrderRepository);
 
         assertThrows(IllegalArgumentException.class, () -> kiosk.placeOrder(null));
+    }
+
+    @Test
+    @DisplayName("주문이 제대로 안들어갔는디오.. :(")
+    void testExceptionOnOrderSave() {
+        Order mockOrder = mock(Order.class);
+        OrderRepository mockOrderRepository = mock(OrderRepository.class);
+        doThrow(RuntimeException.class).when(mockOrderRepository).saveOrder(mockOrder);
+
+        Kiosk kiosk = new Kiosk(mockOrderRepository);
+
+        assertThrows(RuntimeException.class, () -> kiosk.placeOrder(mockOrder));
     }
 
 }
