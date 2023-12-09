@@ -25,7 +25,7 @@ public class KioskTdd {
 
     @Test
     @DisplayName("머야 빌지가 비어있잖아??")
-    void testInvalidOrder() {
+    void testEmptyOrder() {
         OrderRepository mockOrderRepository = mock(OrderRepository.class);
         Kiosk kiosk = new Kiosk(mockOrderRepository);
 
@@ -34,7 +34,7 @@ public class KioskTdd {
 
     @Test
     @DisplayName("주문이 제대로 안들어갔는디오.. :(")
-    void testExceptionOnOrderSave() {
+    void testNotPlaceOrder() {
         Order mockOrder = mock(Order.class);
         OrderRepository mockOrderRepository = mock(OrderRepository.class);
         doThrow(RuntimeException.class).when(mockOrderRepository).saveOrder(mockOrder);
