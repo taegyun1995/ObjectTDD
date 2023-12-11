@@ -27,4 +27,5 @@ public class LegacyService {
         logger.log("Order processed: " + orderId);
         return true;
     }
+
 }

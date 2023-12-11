@@ -30,7 +30,7 @@ class RefactoringServiceTest {
     @DisplayName("결제가 성공적으로 이루어졌네요! :)")
     void testSuccessOrder() {
         String orderId = "orderId";
-        Double pay = 100.0;
+        double pay = 100.0;
 
         when(mockOrderRepository.getOrder(orderId)).thenReturn(Optional.of(mockOrder));
         when(mockPaymentRepository.makePayment(pay)).thenReturn(true);
@@ -44,7 +44,7 @@ class RefactoringServiceTest {
     }
 
     @Test
-    @DisplayName("입력 값 orderId가 null인 경우")
+    @DisplayName("입력 값 orderId가 null") // 왜 ?! 검증해야 하는가 ?! 우린 인간이다... 메타인지를 버릴 것...
     void testNullOrderId() {
         boolean result = sut.processOrder(null);
 
@@ -53,7 +53,7 @@ class RefactoringServiceTest {
     }
 
     @Test
-    @DisplayName("입력 값 orderId가 비어있는 경우")
+    @DisplayName("입력 값 orderId가 빈값")
     void testEmptyOrderId() {
         String emptyOrderId = "";
 
@@ -90,3 +90,7 @@ class RefactoringServiceTest {
     }
 
 }
+
+// 서비스 테스트
+// 인풋 아웃풋을 분리하여 테스트..
+// request 보다는 커맨드를 !
