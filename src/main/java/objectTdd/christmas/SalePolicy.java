@@ -10,7 +10,7 @@ public class SalePolicy {
         this.timeLoader = timeLoader;
     }
 
-    public String sale() {
+    public String sale(TimeLoader timeLoader) {
         LocalDate date = timeLoader.now();
         if (date.isEqual(LocalDate.of(2023, 12, 25))) {
             return "50%";
