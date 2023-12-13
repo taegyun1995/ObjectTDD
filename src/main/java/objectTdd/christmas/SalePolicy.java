@@ -2,7 +2,7 @@ package objectTdd.christmas;
 
 import java.time.LocalDate;
 
-public class SalePolicy {
+public class SalePolicy implements Policy{
 
     private final TimeLoader timeLoader;
 
@@ -10,7 +10,8 @@ public class SalePolicy {
         this.timeLoader = timeLoader;
     }
 
-    public String sale(TimeLoader timeLoader) {
+    @Override
+    public String sale() {
         LocalDate date = timeLoader.now();
         if (date.isEqual(LocalDate.of(2023, 12, 25))) {
             return "50%";

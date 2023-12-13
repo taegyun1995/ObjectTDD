@@ -26,7 +26,7 @@ public class ChristmasTdd {
     void test0PerSale() {
         when(timeLoader.now()).thenReturn(LocalDate.now());
 
-        String actual = sut.sale(timeLoader);
+        String actual = sut.sale();
 
         assertEquals("0%", actual);
     }
@@ -36,7 +36,7 @@ public class ChristmasTdd {
     void test50PerSale() {
         when(timeLoader.now()).thenReturn(of(2023, 12, 25));
 
-        String actual = sut.sale(timeLoader);
+        String actual = sut.sale();
 
         assertEquals("50%", actual);
     }
@@ -50,7 +50,7 @@ public class ChristmasTdd {
         try (var mockedLocalDate = mockStatic(LocalDate.class)) {
             mockedLocalDate.when(LocalDate::now).thenReturn(now);
 
-            String actual = sut.sale(timeLoader);
+            String actual = sut.sale();
 
             assertEquals("50%", actual);
         }
